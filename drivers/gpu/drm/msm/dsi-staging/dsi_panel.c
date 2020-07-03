@@ -887,6 +887,7 @@ static int dsi_panel_parse_timing(struct device *parent,
 		       rc);
 		goto error;
 	}
+	pr_info("Got panel refresh rate: %d", mode->refresh_rate);
 
 	rc = dsi_panel_parse(of_node, fw_entry,
 		"qcom,mdss-dsi-panel-width", &mode->h_active);
