@@ -675,6 +675,7 @@ static int
 qpnp_led_masked_write(struct qpnp_led_data *led, u16 addr, u8 mask, u8 val)
 {
 	int rc;
+	printk("LED: Write for led: %s, address: 0x%x, mask: 0x%x, val: 0x%x", led->cdev.name, addr, mask, val);
 
 	rc = regmap_update_bits(led->regmap, addr, mask, val);
 	if (rc)
