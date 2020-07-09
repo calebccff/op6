@@ -3718,7 +3718,7 @@ static int synaptics_input_init(struct synaptics_ts_data *ts)
 	set_bit(EV_ABS, ts->input_dev->evbit);
 	set_bit(EV_KEY, ts->input_dev->evbit);
 	set_bit(ABS_MT_TOUCH_MAJOR, ts->input_dev->absbit);
-	set_bit(ABS_MT_WIDTH_MAJOR, ts->input_dev->absbit);
+	//set_bit(ABS_MT_WIDTH_MAJOR, ts->input_dev->absbit);
 	set_bit(ABS_MT_POSITION_X, ts->input_dev->absbit);
 	set_bit(ABS_MT_POSITION_Y, ts->input_dev->absbit);
 	set_bit(INPUT_PROP_DIRECT, ts->input_dev->propbit);
