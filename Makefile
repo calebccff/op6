@@ -400,19 +400,19 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -Werror-implicit-function-declaration \
 		   -Wno-format-security \
 		   -std=gnu89 \
-		   -mcpu=cortex-a75.cortex-a55 -mtune=cortex-a75.cortex-a55 \
+		   #-mcpu=cortex-a75.cortex-a55 -mtune=cortex-a75.cortex-a55 
 		   -fdiagnostics-color=always -ftree-vectorize --param=max-inline-insns-auto=1000 -pipe \
-		   -Wno-maybe-uninitialized -Wno-unused-variable -Wno-unused-function -Wno-unused-label \
-		   -Wno-memset-transposed-args -Wno-bool-compare -Wno-logical-not-parentheses -Wno-discarded-array-qualifiers \
-		   -Wno-unused-const-variable -Wno-array-bounds -Wno-incompatible-pointer-types \
-		   -Wno-misleading-indentation -Wno-tautological-compare -Wno-error=misleading-indentation \
-		   -Wno-format-truncation -Wno-duplicate-decl-specifier -Wno-memset-elt-size -Wno-bool-operation \
-		   -Wno-int-in-bool-context -Wno-parentheses -Wno-switch-unreachable -Wno-stringop-overflow -Wno-format-overflow \
-		   -Wno-nonnull -Wno-attributes -Wno-packed-not-aligned -Wno-error=sizeof-pointer-div -Wno-sizeof-pointer-div \
-		   -Wno-sizeof-pointer-memaccess -Wno-stringop-truncation \
-		   -Wformat=0 -Wno-address-of-packed-member -Wno-psabi -Wno-enum-compare -Wno-unused-result -Wno-pointer-to-int-cast \
-		   -Wno-sequence-point -Wno-unused-value -Wno-uninitialized -Wno-missing-attributes \
-		   -Wno-builtin-declaration-mismatch -Wno-restrict
+		   -Wno-maybe-uninitialized -Wno-unused-variable -Wno-unused-function -Wno-unused-label 
+		#    -Wno-memset-transposed-args -Wno-bool-compare -Wno-logical-not-parentheses -Wno-discarded-array-qualifiers \
+		#    -Wno-unused-const-variable -Wno-array-bounds -Wno-incompatible-pointer-types \
+		#    -Wno-misleading-indentation -Wno-tautological-compare -Wno-error=misleading-indentation \
+		#    -Wno-format-truncation -Wno-duplicate-decl-specifier -Wno-memset-elt-size -Wno-bool-operation \
+		#    -Wno-int-in-bool-context -Wno-parentheses -Wno-switch-unreachable -Wno-stringop-overflow -Wno-format-overflow \
+		#    -Wno-nonnull -Wno-attributes -Wno-packed-not-aligned -Wno-error=sizeof-pointer-div -Wno-sizeof-pointer-div \
+		#    -Wno-sizeof-pointer-memaccess -Wno-stringop-truncation \
+		#    -Wformat=0 -Wno-address-of-packed-member -Wno-psabi -Wno-enum-compare -Wno-unused-result -Wno-pointer-to-int-cast \
+		#    -Wno-sequence-point -Wno-unused-value -Wno-uninitialized -Wno-missing-attributes \
+		#    -Wno-builtin-declaration-mismatch -Wno-restrict
 
 KBUILD_CPPFLAGS := -D__KERNEL__
 KBUILD_AFLAGS_KERNEL :=
@@ -806,18 +806,18 @@ endif
 # This selects the stack protector compiler flag. Testing it is delayed
 # until after .config has been reprocessed, in the prepare-compiler-check
 # target.
-ifdef CONFIG_CC_STACKPROTECTOR_REGULAR
-  stackp-flag := -fstack-protector
-  stackp-name := REGULAR
-else
-ifdef CONFIG_CC_STACKPROTECTOR_STRONG
-  stackp-flag := -fstack-protector-strong
-  stackp-name := STRONG
-else
+# ifdef CONFIG_CC_STACKPROTECTOR_REGULAR
+#   stackp-flag := -fstack-protector
+#   stackp-name := REGULAR
+# else
+# ifdef CONFIG_CC_STACKPROTECTOR_STRONG
+#   stackp-flag := -fstack-protector-strong
+#   stackp-name := STRONG
+# else
   # Force off for distro compilers that enable stack protector by default.
-  stackp-flag := $(call cc-option, -fno-stack-protector)
-endif
-endif
+#  stackp-flag := $(call cc-option, -fno-stack-protector)
+#endif
+#endif
 # Find arch-specific stack protector compiler sanity-checking script.
 ifdef CONFIG_CC_STACKPROTECTOR
   stackp-path := $(srctree)/scripts/gcc-$(SRCARCH)_$(BITS)-has-stack-protector.sh
